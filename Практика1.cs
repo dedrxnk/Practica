@@ -27,10 +27,10 @@ public class Practica1
         int length_main = str.Length; 
         int length_sec = s.Length;
         int find = str.IndexOf(s);
-        //if (find > -1)
-        //{
+        if (find > -1)
+        {
             ready = str.Replace(s, "");
-        //}
+        }
         return ready;
     }
     public static int leng(string str)
