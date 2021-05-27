@@ -1,23 +1,69 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Practica10
 {
+    public class RIM
+    {
+        Dictionary<string, string> dictionaryChar = new Dictionary<string, string>()
+            {
+{"1","I"},
+{"2","II"},
+{"3","III"},
+{"4","IV"},
+{"5","V"},
+{"6","VI"},
+{"7","VII"},
+{"8","VIII"},
+{"9","IX"},
+{"10","X"},
+};
+
+        public string TranslitFileName(string source)
+        {
+            var result = "";
+            // проход по строке для поиска символов подлежащих замене которые находятся в словаре dictionaryChar
+            foreach (var ch in source)
+            {
+                var ss = "";
+
+                if (dictionaryChar.TryGetValue(ch.ToString(), out ss))
+                {
+                    result += ss;
+                }
+
+                else
+                {
+                    result += ch;
+                }
+                    
+            }
+            return result;
+        }
+    }
+
     class Program
     {
-        private static int reverse(int num, int acc)
+        static void Main(string[] args)
         {
-            while (num > 0) { acc = acc * 10 + num % 10; num /= 10; }
-            return acc;
+            RIM rim = new RIM();
+
+            Console.WriteLine("Ввод римский цифр от 1 до 10 (Больше не завезли)");
+
+            string text = Console.ReadLine();
+
+            string textOut = rim.TranslitFileName(text);
+
+            Console.WriteLine("Исходная строка \'{0}\'", text);
+            Console.WriteLine("Cтрока после замены \'{0}\'", textOut);
+            Console.ReadLine();
+
         }
 
-        public static void Main()
+        static void PP()
         {
-            Console.WriteLine("ввод числа: ");
-            int num = int.Parse(Console.ReadLine());
-            Console.WriteLine((num == 0) || (reverse(num, 0) == num));
-            Console.ReadKey(true);
+            RIM rim = new RIM();
+
         }
     }
 }
